@@ -1,23 +1,21 @@
 import java.util.Scanner;
 
-class ArrayAccess {
+class VoterEligibility {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        System.out.print("Enter age: ");
+        int age = sc.nextInt();
+
         try {
-            System.out.print("Enter N: ");
-            int n = sc.nextInt();
+            if (age < 18) {
+                throw new Exception("Invalid Age Exception");
+            }
 
-            int[] arr = new int[n];
-
-            System.out.print("Enter index: ");
-            int index = sc.nextInt();
-
-            System.out.println(arr[index]);
-            System.out.println("Element Displayed Successfully");
+            System.out.println("Eligible to Vote");
         } 
-        catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("ArrayIndexOutOfBounds Exception");
+        catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
         sc.close();
