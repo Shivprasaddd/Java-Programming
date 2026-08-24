@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+class ArrayAccess {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter N: ");
+            int n = sc.nextInt();
+
+            int[] arr = new int[n];
+
+            System.out.print("Enter index: ");
+            int index = sc.nextInt();
+
+            System.out.println(arr[index]);
+            System.out.println("Element Displayed Successfully");
+        } 
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("ArrayIndexOutOfBounds Exception");
+        }
+
+        sc.close();
+    }
+}
