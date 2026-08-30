@@ -1,0 +1,104 @@
+import java.util.*;
+
+class Patient {
+    private int patientId;
+    private String patientName;
+    private int age;
+    private String diagnosis;
+
+    static String hospitalName = "Apollo Hospitals";
+    final int MAXIMUM_PATIENTS = 100;
+
+    Patient(int patientId, String patientName, int age, String diagnosis) {
+        this.patientId = patientId;
+        this.patientName = patientName;
+        this.age = age;
+        this.diagnosis = diagnosis;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+
+    public void displayDetails() {
+        System.out.println("Patient Details Displayed");
+        System.out.println("Patient ID: " + getPatientId());
+        System.out.println("Patient Name: " + getPatientName());
+        System.out.println("Age: " + getAge());
+        System.out.println("Diagnosis: " + getDiagnosis());
+        System.out.println("Hospital Name: " + hospitalName);
+        System.out.println("Maximum Patients: " + MAXIMUM_PATIENTS);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int id1 = sc.nextInt();
+        String name1 = sc.next();
+        int age1 = sc.nextInt();
+        String diagnosis1 = sc.next();
+
+        Patient patient = new Patient(id1, name1, age1, diagnosis1);
+
+        if (age1 >= 1 && age1 <= 100) {
+            System.out.println("Patient Record Created");
+        } else {
+            System.out.println("Invalid Age");
+        }
+
+        int id2 = sc.nextInt();
+        String name2 = sc.next();
+        int age2 = sc.nextInt();
+        String diagnosis2 = sc.next();
+
+        if (id2 == patient.getPatientId()) {
+            patient.setPatientName(name2);
+            patient.setAge(age2);
+            patient.setDiagnosis(diagnosis2);
+            System.out.println("Patient Record Updated");
+        }
+
+        int id3 = sc.nextInt();
+        String name3 = sc.next();
+        int age3 = sc.nextInt();
+        String diagnosis3 = sc.next();
+
+        if (age3 < 1 || age3 > 100) {
+            System.out.println("Invalid Age");
+        }
+
+        int searchId = sc.nextInt();
+
+        if (searchId == patient.getPatientId()) {
+            patient.displayDetails();
+        }
+
+        sc.close();
+    }
+}
