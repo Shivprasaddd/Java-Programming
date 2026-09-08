@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+interface Payment {
+    void pay();
+}
+
+class UPI implements Payment {
+    public void pay() {
+        System.out.println("Payment Successful");
+    }
+}
+
+class CreditCard implements Payment {
+    public void pay() {
+        System.out.println("Payment Successful");
+    }
+}
+
+class DebitCard implements Payment {
+    public void pay() {
+        System.out.println("Payment Successful");
+    }
+}
+
+class NetBanking implements Payment {
+    public void pay() {
+        System.out.println("Payment Successful");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String mode = sc.nextLine();
+        Payment payment;
+
+        switch (mode) {
+            case "UPI":
+                payment = new UPI();
+                payment.pay();
+                break;
+
+            case "Credit Card":
+                payment = new CreditCard();
+                payment.pay();
+                break;
+
+            case "Debit Card":
+                payment = new DebitCard();
+                payment.pay();
+                break;
+
+            case "Net Banking":
+                payment = new NetBanking();
+                payment.pay();
+                break;
+
+            default:
+                System.out.println("Invalid Payment Mode");
+        }
+
+        sc.close();
+    }
+}
