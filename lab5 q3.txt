@@ -1,0 +1,59 @@
+class Product {
+    String productId;
+    String productName;
+    double price;
+
+    Product(String productId, String productName, double price) {
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
+    }
+
+    void display() {
+        if (price <= 0) {
+            System.out.println("Invalid Product Price");
+        }
+    }
+}
+
+class Electronics extends Product {
+
+    Electronics(String productId, String productName, double price) {
+        super(productId, productName, price);
+    }
+
+    @Override
+    void display() {
+        if (price <= 0) {
+            System.out.println("Invalid Product Price");
+        } else {
+            System.out.println("Electronics Product Displayed");
+        }
+    }
+}
+
+class HomeAppliance extends Product {
+
+    HomeAppliance(String productId, String productName, double price) {
+        super(productId, productName, price);
+    }
+
+    @Override
+    void display() {
+        if (price <= 0) {
+            System.out.println("Invalid Product Price");
+        } else {
+            System.out.println("Home Appliance Product Displayed");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Electronics e = new Electronics("P101", "Laptop", 65000);
+        HomeAppliance h = new HomeAppliance("P102", "Refrigerator", 40000);
+
+        e.display();
+        h.display();
+    }
+}
