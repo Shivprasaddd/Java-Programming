@@ -1,0 +1,136 @@
+import java.util.Scanner;
+
+abstract class Product {
+    String productId;
+    String productName;
+    double price;
+    double discount;
+
+    Product(String productId, String productName, double price, double discount) {
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
+        this.discount = discount;
+    }
+
+    void displayPrice(double price) {
+        System.out.println("Original Price = ₹" + price);
+    }
+
+    void displayPrice(double price, double discount) {
+        double finalPrice = price - (price * discount / 100);
+        System.out.println("Final Price = ₹" + finalPrice);
+    }
+
+    abstract double calculateFinalPrice();
+}
+
+class Electronics extends Product {
+    Electronics(String productId, String productName, double price, double discount) {
+        super(productId, productName, price, discount);
+    }
+
+    @Override
+    double calculateFinalPrice() {
+        return price - (price * discount / 100);
+    }
+}
+
+class HomeAppliance extends Product {
+    HomeAppliance(String productId, String productName, double price, double discount) {
+        super(productId, productName, price, discount);
+    }
+
+    @Override
+    double calculateFinalPrice() {
+        return price - (price * discount / 100);
+    }
+}
+
+interface Payment {
+    void pay();
+}
+
+class UPI implements Payment {
+    public void pay() {
+        System.out.println("Payment Successful");
+    }
+}
+
+class CreditCard implements Payment {
+    public void pay() {
+        System.out.println("Payment Successful");
+    }
+}
+
+class DebitCard implements Payment {
+    public void pay() {
+        System.out.println("Payment Successful");
+    }
+}
+
+class NetBanking implements Payment {
+    public void pay() {
+        System.out.println("Payment Successful");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String id = sc.nextLine();
+        String name = sc.nextLine();
+        double price = sc.nextDouble();
+        double discount = sc.nextDouble();
+        sc.nextLine();
+        String mode = sc.nextLine();
+
+        if (price <= 0) {
+            System.out.println("Invalid Product Price");
+            sc.close();
+            return;
+        }
+
+        Product product;
+
+        if (name.equalsIgnoreCase("Laptop") ||
+            name.equalsIgnoreCase("Smart Watch")) {
+            product = new Electronics(id, name, price, discount);
+        } else {
+            product = new HomeAppliance(id, name, price, discount);
+        }
+
+        double finalPrice = product.calculateFinalPrice();
+        System.out.println("Final Price = ₹" + finalPrice);
+
+        Payment payment;
+
+        switch (mode) {
+            case "UPI":
+                payment = new UPI();
+                payment.pay();
+                break;
+
+            case "Credit Card":
+                payment = new CreditCard();
+                payment.pay();
+                break;
+
+            case "Debit Card":
+                payment = new DebitCard();
+                payment.pay();
+                break;
+
+            case "Net Banking":
+                payment = new NetBanking();
+                payment.pay();
+                break;
+
+            default:
+                System.out.println("Invalid Payment Mode");
+        }
+
+        sc.close();
+    }
+}
