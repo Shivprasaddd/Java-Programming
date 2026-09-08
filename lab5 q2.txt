@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+class ProductPrice {
+
+    void calculatePrice(double price) {
+        if (price <= 0) {
+            System.out.println("Invalid Product Price");
+        } else {
+            System.out.println("Original Price: ₹" + price);
+        }
+    }
+
+    void calculatePrice(double price, double discount) {
+        if (price <= 0) {
+            System.out.println("Invalid Product Price");
+        } else if (discount < 0 || discount > 100) {
+            System.out.println("Invalid Discount");
+        } else {
+            double finalPrice = price - (price * discount / 100);
+            System.out.println("Final Price = ₹" + finalPrice);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        double price = sc.nextDouble();
+        double discount = sc.nextDouble();
+
+        ProductPrice p = new ProductPrice();
+
+        p.calculatePrice(price);
+        p.calculatePrice(price, discount);
+
+        sc.close();
+    }
+}
